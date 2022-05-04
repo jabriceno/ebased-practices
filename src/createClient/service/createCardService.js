@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const sqs = require('ebased/service/downstream/sqs');
+const sqs = require("ebased/service/downstream/sqs");
 
 async function emitClientCreated(clientCreatedEvent) {
   const { eventPayload, eventMeta } = clientCreatedEvent.get();
@@ -14,4 +14,4 @@ async function emitClientCreated(clientCreatedEvent) {
   );
 }
 
-module.exports = {emitClientCreated};
+module.exports = { emitClientCreated };

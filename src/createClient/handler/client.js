@@ -1,9 +1,14 @@
-const { commandMapper } = require('ebased/handler');
-const inputMode = require('ebased/handler/input/commandApi');
-const outputMode = require('ebased/handler/output/commandApi');
+const { commandMapper } = require("ebased/handler");
+const inputMode = require("ebased/handler/input/commandApi");
+const outputMode = require("ebased/handler/output/commandApi");
 
-const createClientDomain = require('../domain/createClient');
+const createClientDomain = require("../domain/createClient");
 
 module.exports.handler = async (command, context) => {
-  return commandMapper({ command, context }, inputMode, createClientDomain, outputMode);
-}
+  return commandMapper(
+    { command, context },
+    inputMode,
+    createClientDomain,
+    outputMode
+  );
+};

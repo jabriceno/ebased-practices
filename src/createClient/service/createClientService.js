@@ -1,4 +1,4 @@
-const dynamo = require('ebased/service/storage/dynamo');
+const dynamo = require("ebased/service/storage/dynamo");
 const CLIENTS_TABLE = process.env.CLIENTS_TABLE;
 
 const createClient = async (client) => {
@@ -8,4 +8,4 @@ const createClient = async (client) => {
   });
 };
 
-module.exports = {createClient};
+module.exports = { createClient };

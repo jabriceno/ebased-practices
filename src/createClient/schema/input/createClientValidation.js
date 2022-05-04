@@ -1,10 +1,10 @@
-const { InputValidation } = require('ebased/schema/inputValidation');
+const { InputValidation } = require("ebased/schema/inputValidation");
 
 class CreateClientValidation extends InputValidation {
   constructor(payload, meta) {
     super({
-      type: 'CLIENT.CREATE_CLIENT',
-      specversion: 'v1.0.0',
+      type: "CLIENT.CREATE_CLIENT",
+      specversion: "v1.0.0",
       source: meta.source,
       payload: payload,
       schema: {
@@ -13,7 +13,7 @@ class CreateClientValidation extends InputValidation {
         lastName: { type: String, required: true },
         dob: { type: Date, required: true },
       },
-    })
+    });
   }
 }
 

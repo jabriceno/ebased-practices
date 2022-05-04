@@ -1,4 +1,4 @@
-const dynamo = require('ebased/service/storage/dynamo');
+const dynamo = require("ebased/service/storage/dynamo");
 const CARDS_TABLE = process.env.CARDS_TABLE;
 
 const createCard = async (card) => {
@@ -8,4 +8,4 @@ const createCard = async (card) => {
   });
 };
 
-module.exports = {createCard};
+module.exports = { createCard };
