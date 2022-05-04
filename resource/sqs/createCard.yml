@@ -1,0 +1,5 @@
+Resources:
+  CreateCardQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: createCardQueue

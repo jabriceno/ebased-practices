@@ -1,0 +1,24 @@
+CreateClient:
+  handler: src/createClient/handler/client.handler
+  description: Submit data to create a new client
+  timeout: 12
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+      Resource:
+        - !GetAtt ClientsTable.Arn
+    - Effect: Allow
+      Action:
+        - sqs:SendMessage
+      Resource:
+        - !GetAtt CreateCardQueue.Arn
+  environment:
+    NODE_ENV: 'dev'
+    LEGAL_AGE: 18
+    CLIENTS_TABLE: !Ref ClientsTable
+    CREATE_CARD_QUEUE: !Ref CreateCardQueue
+  events:
+    - httpApi:
+        path: /clients
+        method: post

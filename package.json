@@ -1,0 +1,22 @@
+{
+  "name": "createclient",
+  "version": "1.0.0",
+  "description": "",
+  "main": "client.js",
+  "scripts": {
+    "test": "jest",
+    "coverage": "jest --collect-coverage"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jest": "^27.4.1",
+    "aws-sdk": "^2.1107.0",
+    "ebased": "^1.6.2"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1",
+    "serverless-iam-roles-per-function": "^3.2.0"
+  }
+}

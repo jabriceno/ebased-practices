@@ -1,0 +1,27 @@
+CreateCard:
+  handler: src/createCard/handler/card.handler
+  description: Creates a new card
+  timeout: 12
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+      Resource:
+        - !GetAtt CardsTable.Arn
+    - Effect: Allow
+      Action:
+        - sqs:DeleteMessage
+        - sqs:GetQueueAttributes
+        - sqs:ReceiveMessage
+      Resource:
+        - !GetAtt CreateCardQueue.Arn
+  environment:
+    NODE_ENV: 'dev'
+    CREATE_CARD_QUEUE: !Ref CreateCardQueue
+    CARDS_TABLE: !Ref CardsTable
+  events:
+    - sqs:
+        arn:
+          Fn::GetAtt:
+            - CreateCardQueue
+            - Arn
