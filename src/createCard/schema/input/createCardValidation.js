@@ -11,6 +11,7 @@ class CreateCardValidation extends InputValidation {
         dni: { type: String, required: true },
         name: { type: String, required: true },
         lastName: { type: String, required: true },
+        age: {type: Number, required: false},
       },
     });
   }

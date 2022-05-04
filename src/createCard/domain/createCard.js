@@ -17,14 +17,19 @@ module.exports = async (commandPayload, commandMeta) => {
   try {
     logger.info("Trying to create card");
 
-    const { dni, name, lastName } = validatedPayload;
+    const { dni, name, lastName, age } = validatedPayload;
+
+    let type = "CLASSIC";
+    if (age > 45) {
+      type = "GOLD";
+    }
 
     // logica de creacion de la tarjeta
     const cardInfo = {
       dni,
       name,
       lastName,
-      type: "VISA",
+      type,
       number: "66020919388101177",
       valid: "01/28",
       secret: "660",

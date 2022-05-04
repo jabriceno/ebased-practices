@@ -6,7 +6,7 @@ const logger = require("ebased/_helper/logger");
 const {
   CreateClientValidation,
 } = require("../schema/input/createClientValidation");
-const { canOpenAccountByAge } = require("./helper/utils");
+const { canOpenAccountByAge, calculateAge } = require("./helper/utils");
 const { createClient } = require("../service/createClientService");
 const { CreateCardEvent } = require("../schema/event/createCardEvent");
 const { emitClientCreated } = require("../service/createCardService");
@@ -32,7 +32,7 @@ module.exports = async (commandPayload, commandMeta) => {
   try {
     await createClient({ dni, name, lastName, dob });
 
-    const cardMessage = { dni, name, lastName };
+    const cardMessage = { dni, name, lastName, age: calculateAge(dob) };
     await emitClientCreated(new CreateCardEvent(cardMessage, commandMeta));
 
     return {

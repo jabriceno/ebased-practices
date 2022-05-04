@@ -25,4 +25,4 @@ const canOpenAccountByAge = (dob) => {
   return true;
 };
 
-module.exports = { canOpenAccountByAge };
+module.exports = { canOpenAccountByAge, calculateAge };
