@@ -16,6 +16,7 @@ CreateClient:
   environment:
     NODE_ENV: "dev"
     LEGAL_AGE: 18
+    TOP_AGE: 65
     CLIENTS_TABLE: !Ref ClientsTable
     CREATE_CARD_QUEUE: !Ref CreateCardQueue
   events:

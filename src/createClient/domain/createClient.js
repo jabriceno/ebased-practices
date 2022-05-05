@@ -21,7 +21,7 @@ module.exports = async (commandPayload, commandMeta) => {
   const { dni, name, lastName, dob } = validatedPayload;
 
   if (!canOpenAccountByAge(dob)) {
-    logger.error("invalid date of birth", dob);
+    logger.error("invalid range of age", dob);
     throw new ErrorHandled("AGE_VALIDATION_FAILS", {
       code: 422,
       layer: "CREATE_CLIENT_ERROR_DOMAIN",

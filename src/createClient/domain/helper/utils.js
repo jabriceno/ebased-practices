@@ -17,9 +17,10 @@ const calculateAge = (dob) => {
 
 const canOpenAccountByAge = (dob) => {
   const legalAge = process.env.LEGAL_AGE || 18;
+  const topAge = process.env.TOP_AGE || 65;
   const age = calculateAge(dob);
 
-  if (age < legalAge) {
+  if ((age < legalAge) || (age > topAge)) {
     return false;
   }
   return true;
