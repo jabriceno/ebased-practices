@@ -13,12 +13,15 @@ CreateClient:
         - sqs:SendMessage
       Resource:
         - !GetAtt CreateCardQueue.Arn
+        - !GetAtt CreateGiftQueue.Arn
   environment:
     NODE_ENV: "dev"
     LEGAL_AGE: 18
     TOP_AGE: 65
     CLIENTS_TABLE: !Ref ClientsTable
     CREATE_CARD_QUEUE: !Ref CreateCardQueue
+    CREATE_GIFT_QUEUE: !Ref CreateGiftQueue
+
   events:
     - httpApi:
         path: /clients

@@ -15,11 +15,14 @@ provider:
 functions:
   - ${file(src/createClient/createClient.yml)}
   - ${file(src/createCard/createCard.yml)}
+  - ${file(src/createGift/createGift.yml)}
 
 resources:
   # dynamoDB
   - ${file(resource/dynamo/clients.yml)}
   - ${file(resource/dynamo/cards.yml)}
+  - ${file(resource/dynamo/gifts.yml)}
 
   # sqs
   - ${file(resource/sqs/createCard.yml)}
+  - ${file(resource/sqs/createGift.yml)}

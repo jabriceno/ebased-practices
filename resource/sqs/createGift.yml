@@ -1,0 +1,5 @@
+Resources:
+  CreateGiftQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: createGiftQueue

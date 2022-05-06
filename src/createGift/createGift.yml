@@ -1,0 +1,28 @@
+CreateGift:
+  handler: src/createGift/handler/gift.handler
+  description: Creates a new gift for client
+  timeout: 12
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+        - dynamodb:GetItem
+      Resource:
+        - !GetAtt GiftsTable.Arn
+    - Effect: Allow
+      Action:
+        - sqs:DeleteMessage
+        - sqs:GetQueueAttributes
+        - sqs:ReceiveMessage
+      Resource:
+        - !GetAtt CreateGiftQueue.Arn
+  environment:
+    NODE_ENV: "dev"
+    CREATE_GIFT_QUEUE: !Ref CreateGiftQueue
+    GIFTS_TABLE: !Ref GiftsTable
+  events:
+    - sqs:
+        arn:
+          Fn::GetAtt:
+            - CreateGiftQueue
+            - Arn

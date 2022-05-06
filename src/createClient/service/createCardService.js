@@ -2,7 +2,7 @@
 
 const sqs = require("ebased/service/downstream/sqs");
 
-async function emitClientCreated(clientCreatedEvent) {
+async function emitClientCreatedForCard(clientCreatedEvent) {
   const { eventPayload, eventMeta } = clientCreatedEvent.get();
 
   await sqs.send(
@@ -14,4 +14,16 @@ async function emitClientCreated(clientCreatedEvent) {
   );
 }
 
-module.exports = { emitClientCreated };
+async function emitClientCreatedForGift(clientCreatedEvent) {
+  const { eventPayload, eventMeta } = clientCreatedEvent.get();
+
+  await sqs.send(
+    {
+      QueueUrl: process.env.CREATE_GIFT_QUEUE,
+      MessageBody: eventPayload,
+    },
+    eventMeta
+  );
+}
+
+module.exports = { emitClientCreatedForCard, emitClientCreatedForGift };
