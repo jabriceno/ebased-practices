@@ -23,6 +23,9 @@ resources:
   - ${file(resource/dynamo/cards.yml)}
   - ${file(resource/dynamo/gifts.yml)}
 
+  # sns
+  - ${file(resource/sns/clientCreated.yml)}
+
   # sqs
   - ${file(resource/sqs/createCard.yml)}
   - ${file(resource/sqs/createGift.yml)}

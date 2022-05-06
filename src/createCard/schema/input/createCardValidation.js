@@ -3,7 +3,7 @@ const { InputValidation } = require("ebased/schema/inputValidation");
 class CreateCardValidation extends InputValidation {
   constructor(payload, meta) {
     super({
-      type: "CLIENT.CREATE_CLIENT",
+      type: "CARD.CREATE_CARD",
       specversion: "v1.0.0",
       source: meta.source,
       payload: payload,
@@ -11,8 +11,9 @@ class CreateCardValidation extends InputValidation {
         dni: { type: String, required: true },
         name: { type: String, required: true },
         lastName: { type: String, required: true },
-        age: {type: Number, required: false},
-      },
+        dob: { type: Date, required: true },
+        age: { type: Number, required: true },
+      }
     });
   }
 }

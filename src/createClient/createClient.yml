@@ -10,10 +10,9 @@ CreateClient:
         - !GetAtt ClientsTable.Arn
     - Effect: Allow
       Action:
-        - sqs:SendMessage
+        - sns:Publish
       Resource:
-        - !GetAtt CreateCardQueue.Arn
-        - !GetAtt CreateGiftQueue.Arn
+        - !Ref ClientCreatedTopic
   environment:
     NODE_ENV: "dev"
     LEGAL_AGE: 18
@@ -21,6 +20,7 @@ CreateClient:
     CLIENTS_TABLE: !Ref ClientsTable
     CREATE_CARD_QUEUE: !Ref CreateCardQueue
     CREATE_GIFT_QUEUE: !Ref CreateGiftQueue
+    CLIENT_CREATED_TOPIC: !Ref ClientCreatedTopic
 
   events:
     - httpApi:

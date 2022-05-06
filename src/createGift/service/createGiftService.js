@@ -5,7 +5,7 @@ const getGift = async (dni) => {
   const { Item } = await dynamo.getItem({
     TableName: GIFTS_TABLE,
     Key: { dni: dni },
-  });Í
+  });
   return Item;
 };
 

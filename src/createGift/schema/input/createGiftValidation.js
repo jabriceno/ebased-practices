@@ -9,8 +9,11 @@ class CreateGiftValidation extends InputValidation {
       payload: payload,
       schema: {
         dni: { type: String, required: true },
+        name: { type: String, required: true },
+        lastName: { type: String, required: true },
         dob: { type: Date, required: true },
-      },
+        age: { type: Number, required: true },
+      }
     });
   }
 }

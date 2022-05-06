@@ -3,3 +3,15 @@ Resources:
       Type: AWS::SQS::Queue
       Properties:
         QueueName: createCardQueue
+  CreateCardQueuePolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties: 
+      PolicyDocument: 
+        Statement:
+          Effect: Allow
+          Principal: '*'
+          Action: 
+            - SQS:*
+          Resource: !GetAtt CreateCardQueue.Arn
+      Queues: 
+        - !Ref CreateCardQueue

@@ -8,9 +8,8 @@ const {
 } = require("../schema/input/createClientValidation");
 const { canOpenAccountByAge, calculateAge } = require("./helper/utils");
 const { createClient } = require("../service/createClientService");
-const { CreateCardEvent } = require("../schema/event/createCardEvent");
-const { CreateGiftEvent } = require("../schema/event/createGiftEvent");
-const { emitClientCreatedForCard, emitClientCreatedForGift } = require("../service/createCardService");
+const { ClientCreatedEvent } = require("../schema/event/clientCreatedEvent");
+const { emitClientCreated } = require("../service/emitClientCreatedService");
 
 module.exports = async (commandPayload, commandMeta) => {
   const validatedPayload = new CreateClientValidation(
@@ -33,11 +32,8 @@ module.exports = async (commandPayload, commandMeta) => {
   try {
     await createClient({ dni, name, lastName, dob });
 
-    const cardMessage = { dni, name, lastName, age: calculateAge(dob) };
-    await emitClientCreatedForCard(new CreateCardEvent(cardMessage, commandMeta));
-
-    const gitfMessage = { dni, dob };
-    await emitClientCreatedForGift(new CreateGiftEvent(gitfMessage, commandMeta));
+    const emitMessage = { dni, name, lastName, dob, age: calculateAge(dob) };
+    await emitClientCreated(new ClientCreatedEvent(emitMessage, commandMeta));
 
     return {
       body: {
